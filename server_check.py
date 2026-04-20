@@ -1,15 +1,21 @@
 import os
 
-# Адреса, яку будемо перевіряти
-hostname = "8.8.8.8" 
+# 1. Створюємо список адрес для перевірки
+targets = ["8.8.8.8", "1.1.1.1", "google.com"]
 
-print(f"--- Перевірка зв'язку з {hostname} ---")
+print("--- Починаємо масову перевірку серверів ---")
 
-# Виконуємо команду ping
-response = os.system(f"ping -n 1 {hostname}" if os.name == "nt" else f"ping -c 1 {hostname}")
+# 2. Починаємо цикл: для кожного "target" у списку "targets"
+for target in targets:
+    print(f"\nПеревіряю: {target}...")
+    
+    # Виконуємо команду ping (враховуємо Windows та Linux)
+    response = os.system(f"ping -n 1 {target}" if os.name == "nt" else f"ping -c 1 {target}")
 
-# Перевіряємо результат
-if response == 0:
-    print(f"\nУспіх! Сервер {hostname} доступний.")
-else:
-    print(f"\nПомилка! Не вдалося з'єднатися з {hostname}.")
+    # Перевіряємо результат для кожної конкретної адреси
+    if response == 0:
+        print(f"Результат: {target} ПРАЦЮЄ")
+    else:
+        print(f"Результат: {target} НЕ ДОСТУПНИЙ")
+
+print("\n--- Перевірку завершено ---")
