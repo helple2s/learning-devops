@@ -1,1 +1,6 @@
 GIT,Linux,Web
+linux: bazzit(fedora)
+    flatpak (для звичайних програм)
+    rpm-ostree (для системних програм)
+    brew (чисто на bazzit)
+  
